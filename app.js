@@ -86,6 +86,14 @@
   $('#download-hero')?.addEventListener('click', downloadSpecs);
   // Custom values are a planning concept, not electrical design instructions.
   function validBuild(voltage, capacity) { return Number.isFinite(voltage) && voltage >= 3 && voltage <= 96 && Math.abs(voltage * 10 - Math.round(voltage * 10)) < .000001 && Number.isInteger(capacity) && capacity >= 1 && capacity <= 1000; }
+  let customBuilderMode = false;
+  function updateBuildChoices(voltage, capacity) {
+    $$('.builder-presets button').forEach(button => {
+      const custom = button.id === 'custom-build-option';
+      const active = customBuilderMode ? custom : !custom && Number(button.dataset.buildV) === voltage && Number(button.dataset.buildAh) === capacity;
+      button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active));
+    });
+  }
   function updateBuild() {
     const voltage = Number($('#custom-voltage').value), capacity = Number($('#custom-capacity').value);
     const valid = validBuild(voltage, capacity);
@@ -94,20 +102,22 @@
     $('#custom-capacity').setAttribute('aria-invalid', String(!(Number.isInteger(capacity) && capacity >= 1 && capacity <= 1000)));
     $('#save-build').disabled = !valid; $('#download-custom').disabled = !valid;
     const runtimeLink = $('#custom-runtime-link'); runtimeLink.setAttribute('aria-disabled', String(!valid));
-    if (!valid) { text('#custom-energy','—'); text('#energy-formula','Check your configuration'); runtimeLink.removeAttribute('href'); const enquiryLink = $('#custom-contact-link'); if (enquiryLink) { enquiryLink.removeAttribute('href'); enquiryLink.setAttribute('aria-disabled','true'); } $$('.builder-presets button').forEach(button=>{button.classList.remove('active');button.setAttribute('aria-pressed','false');}); return false; }
+    if (!valid) { text('#custom-energy','—'); text('#energy-formula','Check your configuration'); runtimeLink.removeAttribute('href'); const enquiryLink = $('#custom-contact-link'); if (enquiryLink) { enquiryLink.removeAttribute('href'); enquiryLink.setAttribute('aria-disabled','true'); } updateBuildChoices(voltage, capacity); return false; }
     state.voltage = voltage; state.capacity = capacity; syncModel();
     text('#custom-energy', (voltage * capacity / 1000).toFixed(2)); text('#energy-formula', `${voltage}V × ${capacity}Ah = ${number.format(voltage * capacity)}Wh`);
     runtimeLink.href = `runtime.html?v=${voltage}&ah=${capacity}`;
     const enquiryLink = $('#custom-contact-link'); if (enquiryLink) { enquiryLink.href = `contact.html?type=custom&v=${voltage}&ah=${capacity}`; enquiryLink.setAttribute('aria-disabled','false'); }
-    $$('.builder-presets button').forEach(button => { const active = Number(button.dataset.buildV) === voltage && Number(button.dataset.buildAh) === capacity; button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active)); });
+    updateBuildChoices(voltage, capacity);
     return true;
   }
   if ($('#custom-form')) {
     let saved; try { saved = JSON.parse(storage.get('volt-custom-build')); } catch { saved = null; }
-    if (saved && validBuild(saved.voltage, saved.capacity)) { $('#custom-voltage').value = saved.voltage; $('#custom-capacity').value = saved.capacity; }
-    $('#custom-voltage').addEventListener('input',updateBuild); $('#custom-capacity').addEventListener('input',updateBuild);
-    $$('.builder-presets button').forEach(button=>button.addEventListener('click',()=>{ $('#custom-voltage').value=button.dataset.buildV; $('#custom-capacity').value=button.dataset.buildAh; updateBuild(); }));
-    $('#custom-form').addEventListener('submit',event=>{ event.preventDefault(); if(updateBuild()) { const saved=storage.set('volt-custom-build',JSON.stringify({voltage:state.voltage,capacity:state.capacity})); toast(saved?'Build saved to this browser':'Browser storage unavailable. Download your build instead.'); } });
+    if (saved && validBuild(saved.voltage, saved.capacity)) { $('#custom-voltage').value = saved.voltage; $('#custom-capacity').value = saved.capacity; customBuilderMode = saved.mode === 'custom' || !([12,24].includes(saved.voltage) && saved.capacity === 100); }
+    const editCustomBuild = () => { customBuilderMode = true; updateBuild(); };
+    $('#custom-voltage').addEventListener('input',editCustomBuild); $('#custom-capacity').addEventListener('input',editCustomBuild);
+    $('#custom-build-option')?.addEventListener('click', () => { customBuilderMode = true; updateBuild(); $('#custom-voltage').focus(); $('#custom-voltage').select(); });
+    $$('.builder-presets [data-build-v]').forEach(button=>button.addEventListener('click',()=>{ customBuilderMode = false; $('#custom-voltage').value=button.dataset.buildV; $('#custom-capacity').value=button.dataset.buildAh; updateBuild(); }));
+    $('#custom-form').addEventListener('submit',event=>{ event.preventDefault(); if(updateBuild()) { const saved=storage.set('volt-custom-build',JSON.stringify({voltage:state.voltage,capacity:state.capacity,mode:customBuilderMode?'custom':'preset'})); toast(saved?'Build saved to this browser':'Browser storage unavailable. Download your build instead.'); } });
     $('#download-custom').addEventListener('click',()=>{ if(updateBuild()) { download(`VOLT-custom-${state.voltage}V-${state.capacity}Ah.txt`,summary(true)); toast('Custom build downloaded'); } });
     updateBuild();
   } else {

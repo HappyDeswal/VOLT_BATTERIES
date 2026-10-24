@@ -106,3 +106,9 @@ Both models update every dependent view consistently. Drag, spin, reset, calcula
 - Replace the owner’s real email with contact@example.com throughout current website files and documentation.
 - Label the address and email draft as demo placeholders; preserve copy/download enquiry previews.
 - Update the live Site and GitHub main branch. Existing version history is not rewritten.
+
+
+## Revision 13 — generic custom build choice
+- Replace the fixed 48V / 200Ah button on Custom Build with “Custom build”. Keep the 12V and 24V shortcuts.
+- Selecting Custom build retains the current values and focuses voltage for editing. Editing either field selects Custom build automatically. Explicit custom mode persists when a build is saved, including values that happen to match a standard shortcut.
+- Existing non-standard saved builds reopen in custom mode. Runtime’s separate 48V calculator preset remains unchanged.
