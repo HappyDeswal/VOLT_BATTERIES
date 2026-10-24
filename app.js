@@ -201,7 +201,7 @@
     const form = $('#enquiry-form'), review = $('#enquiry-review');
     const name = $('#enquiry-name'), email = $('#enquiry-email'), message = $('#enquiry-message');
     const voltage = $('#enquiry-voltage'), capacity = $('#enquiry-capacity'), quantity = $('#enquiry-quantity');
-    const recipient = 'happydeswal01@gmail.com';
+    const recipient = 'contact@example.com';
     $('.contact-submit').disabled = false;
     let preparedBody = '';
     function updateEnquiryEnergy() {

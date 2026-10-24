@@ -53,7 +53,7 @@ Both models update every dependent view consistently. Drag, spin, reset, calcula
 - New Contact page linked from the shared navigation and footer.
 - General query and custom prismatic battery enquiry modes. Required name, reply email and 10–1,500 character message; optional phone and application. Custom mode adds required voltage, capacity and pack quantity.
 - Custom builder forwards validated voltage/Ah to the contact form.
-- User-supplied recipient: happydeswal01@gmail.com. Prepare a reviewable enquiry, then open the visitor’s email app using a correctly encoded mailto link. Clear copy explains that the visitor must send the email. No fake successful-delivery state.
+- User-supplied recipient: contact@example.com. Prepare a reviewable enquiry, then open the visitor’s email app using a correctly encoded mailto link. Clear copy explains that the visitor must send the email. No fake successful-delivery state.
 - Copy and plain text download fallbacks for visitors without a configured email app. Contact details are not stored in browser storage.
 - Preserve five-page responsive navigation, dark/light theme and existing interactions.
 
@@ -100,3 +100,9 @@ Both models update every dependent view consistently. Drag, spin, reset, calcula
 ## Revision 11 — remove dark-theme switch
 - Remove the theme toggle from all five headers and retire theme-switching JavaScript.
 - Render the light blue glass palette immediately in HTML, independent of older saved preferences or OS appearance. Preserve model selection, custom builds, runtime and homepage battery motion.
+
+
+## Revision 12 — placeholder contact address
+- Replace the owner’s real email with contact@example.com throughout current website files and documentation.
+- Label the address and email draft as demo placeholders; preserve copy/download enquiry previews.
+- Update the live Site and GitHub main branch. Existing version history is not rewritten.

@@ -89,9 +89,9 @@ The custom inputs support **3–96V** in 0.1V steps and **1–1,000Ah** in whole
 
 ## Contact form delivery
 
-The recipient is **happydeswal01@gmail.com**.
+The configured address, **contact@example.com**, is a non-receiving placeholder. Replace it with your own contact address before accepting real enquiries.
 
-The form validates the visitor's details and prepares a reviewable enquiry. **Open email draft** opens the visitor's configured email app; the visitor must press **Send** there. Copy and text-download options provide alternatives.
+The form validates the visitor's details and prepares a reviewable enquiry. **Open demo email draft** opens a draft in the visitor's email app. With the placeholder address, enquiries will not reach the website owner. Copy and text-download options provide alternatives.
 
 There is **no server-side form submission, email delivery service, submission database, or automatic delivery confirmation**. Contact details are not saved to browser storage. To change the recipient, update the address in `contact.html` and the `recipient` constant in `app.js`.
 
