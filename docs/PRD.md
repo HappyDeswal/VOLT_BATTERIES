@@ -112,3 +112,8 @@ Both models update every dependent view consistently. Drag, spin, reset, calcula
 - Replace the fixed 48V / 200Ah button on Custom Build with “Custom build”. Keep the 12V and 24V shortcuts.
 - Selecting Custom build retains the current values and focuses voltage for editing. Editing either field selects Custom build automatically. Explicit custom mode persists when a build is saved, including values that happen to match a standard shortcut.
 - Existing non-standard saved builds reopen in custom mode. Runtime’s separate 48V calculator preset remains unchanged.
+
+
+## Custom build limits — 24 October 2026
+
+Custom voltage is limited to 12–48V in 0.1V steps; capacity is limited to 100–200Ah in whole Ah. Apply these limits to the builder, custom runtime estimates, enquiry form, saved builds and incoming configuration links.

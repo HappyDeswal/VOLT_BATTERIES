@@ -27,8 +27,8 @@
       const v = Number($('#runtime-voltage').value), ah = Number($('#runtime-capacity').value);
       const valid = validBuild(v, ah);
       $('#runtime-build-error').hidden = valid;
-      $('#runtime-voltage').setAttribute('aria-invalid', String(!(v >= 3 && v <= 96 && Math.abs(v * 10 - Math.round(v * 10)) < .000001)));
-      $('#runtime-capacity').setAttribute('aria-invalid', String(!(Number.isInteger(ah) && ah >= 1 && ah <= 1000)));
+      $('#runtime-voltage').setAttribute('aria-invalid', String(!(v >= 12 && v <= 48 && Math.abs(v * 10 - Math.round(v * 10)) < .000001)));
+      $('#runtime-capacity').setAttribute('aria-invalid', String(!(Number.isInteger(ah) && ah >= 100 && ah <= 200)));
       const enquiry = $('#runtime-enquire'); enquiry.setAttribute('aria-disabled', String(!valid));
       if (!valid) { enquiry.removeAttribute('href'); text('#runtime-value','—'); text('#runtime-custom-label','Check your custom battery values.'); return; }
       state.voltage = v; state.capacity = ah;
@@ -85,7 +85,7 @@
   function downloadSpecs(event) { event.preventDefault(); download(`VOLT-${state.voltage}V-${state.capacity}Ah-specs.txt`, summary()); toast(`${state.voltage}V / ${state.capacity}Ah specs downloaded`); }
   $('#download-hero')?.addEventListener('click', downloadSpecs);
   // Custom values are a planning concept, not electrical design instructions.
-  function validBuild(voltage, capacity) { return Number.isFinite(voltage) && voltage >= 3 && voltage <= 96 && Math.abs(voltage * 10 - Math.round(voltage * 10)) < .000001 && Number.isInteger(capacity) && capacity >= 1 && capacity <= 1000; }
+  function validBuild(voltage, capacity) { return Number.isFinite(voltage) && voltage >= 12 && voltage <= 48 && Math.abs(voltage * 10 - Math.round(voltage * 10)) < .000001 && Number.isInteger(capacity) && capacity >= 100 && capacity <= 200; }
   let customBuilderMode = false;
   function updateBuildChoices(voltage, capacity) {
     $$('.builder-presets button').forEach(button => {
@@ -98,8 +98,8 @@
     const voltage = Number($('#custom-voltage').value), capacity = Number($('#custom-capacity').value);
     const valid = validBuild(voltage, capacity);
     $('#custom-error').hidden = valid;
-    $('#custom-voltage').setAttribute('aria-invalid', String(!(voltage >= 3 && voltage <= 96 && Math.abs(voltage * 10 - Math.round(voltage * 10)) < .000001)));
-    $('#custom-capacity').setAttribute('aria-invalid', String(!(Number.isInteger(capacity) && capacity >= 1 && capacity <= 1000)));
+    $('#custom-voltage').setAttribute('aria-invalid', String(!(voltage >= 12 && voltage <= 48 && Math.abs(voltage * 10 - Math.round(voltage * 10)) < .000001)));
+    $('#custom-capacity').setAttribute('aria-invalid', String(!(Number.isInteger(capacity) && capacity >= 100 && capacity <= 200)));
     $('#save-build').disabled = !valid; $('#download-custom').disabled = !valid;
     const runtimeLink = $('#custom-runtime-link'); runtimeLink.setAttribute('aria-disabled', String(!valid));
     if (!valid) { text('#custom-energy','—'); text('#energy-formula','Check your configuration'); runtimeLink.removeAttribute('href'); const enquiryLink = $('#custom-contact-link'); if (enquiryLink) { enquiryLink.removeAttribute('href'); enquiryLink.setAttribute('aria-disabled','true'); } updateBuildChoices(voltage, capacity); return false; }

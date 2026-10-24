@@ -85,7 +85,7 @@ At **100W** and **90% usable energy**:
 | 48V / 100Ah | 43.2 hours |
 | Custom 48V / 200Ah | 86.4 hours |
 
-The custom inputs support **3–96V** in 0.1V steps and **1–1,000Ah** in whole numbers. These are planning input ranges, not manufacturing limits or compatibility guarantees. Estimates assume a constant load and exclude system losses; actual runtime varies.
+The custom inputs support **12–48V** in 0.1V steps and **100–200Ah** in whole numbers. These are planning input ranges, not manufacturing limits or compatibility guarantees. Estimates assume a constant load and exclude system losses; actual runtime varies.
 
 ## Contact form delivery
 
