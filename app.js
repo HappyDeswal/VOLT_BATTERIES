@@ -6,8 +6,6 @@
   const storage = { get(key) { try { return localStorage.getItem(key); } catch { return null; } }, set(key, value) { try { localStorage.setItem(key, value); return true; } catch { return false; } } };
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const number = new Intl.NumberFormat('en', { maximumFractionDigits: 2 });
-  const modelPrices = { 12: 18000, 24: 28000 };
-  const inr = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
   const state = { voltage: 12, capacity: 100, load: 100, usable: 90, runtimeMode: 'preset', spinning: !reducedMotion.matches, x: -17, y: -28, z: -5, dragging: false };
   const battery = $('#battery'), scene = $('#scene');
   let toastTimer;
@@ -61,8 +59,6 @@
     text('#spec-voltage', state.voltage); text('#spec-capacity', state.capacity); text('#spec-energy', number.format(state.voltage * state.capacity));
     text('#callout-energy', number.format(state.voltage * state.capacity / 1000));
     text('.stage-index', $('#custom-form') ? 'CUSTOM / 01' : state.voltage === 12 ? '01 / 02' : '02 / 02');
-    text('#selected-price', modelPrices[state.voltage] ? inr.format(modelPrices[state.voltage]) : 'Enquire');
-    text('#price-model', `${state.voltage}V / 100Ah`);
     scene?.setAttribute('aria-label', `${state.voltage}V ${state.capacity}Ah battery. ${document.body.dataset.page === 'index' ? 'Move the pointer to rotate, or drag on touch screens.' : 'Drag to rotate.'} Use arrow keys for keyboard rotation. Press R to reset.`);
     battery?.classList.toggle('decimal-voltage', String(state.voltage).length > 2);
     updateRuntime();
@@ -80,7 +76,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   function summary(custom = false) {
-    return `VOLT — ${state.voltage}V / ${state.capacity}Ah\n${custom ? 'CUSTOM BUILD CONCEPT' : 'MODEL SPECIFICATION SUMMARY'}\n\nCell format: Prismatic\nNominal voltage: ${state.voltage}V\nCapacity: ${state.capacity}Ah\nCalculated nominal energy: ${number.format(state.voltage * state.capacity)}Wh (${number.format(state.voltage * state.capacity / 1000)}kWh)\n${!custom && state.capacity === 100 && modelPrices[state.voltage] ? `Price (INR): ${inr.format(modelPrices[state.voltage])}\n` : ''}\nEnergy calculation: voltage × amp-hours.\n\nProduct concept. Geometry and imagery are illustrative. Custom input ranges do not confirm manufacturability. Chemistry, dimensions, weight, charging/discharge limits, certifications and warranty have not been specified. Custom build prices require a separate enquiry. Confirm design and compatibility with a qualified supplier.\n\nRuntime estimates exclude real-world system losses.\n`;
+    return `VOLT — ${state.voltage}V / ${state.capacity}Ah\n${custom ? 'CUSTOM BUILD CONCEPT' : 'MODEL SPECIFICATION SUMMARY'}\n\nCell format: Prismatic\nNominal voltage: ${state.voltage}V\nCapacity: ${state.capacity}Ah\nCalculated nominal energy: ${number.format(state.voltage * state.capacity)}Wh (${number.format(state.voltage * state.capacity / 1000)}kWh)\nPricing: Enquire for pricing.\n\nEnergy calculation: voltage × amp-hours.\n\nProduct concept. Geometry and imagery are illustrative. Custom input ranges do not confirm manufacturability. Chemistry, dimensions, weight, charging/discharge limits, certifications and warranty have not been specified. Pricing is available on enquiry. Confirm design and compatibility with a qualified supplier.\n\nRuntime estimates exclude real-world system losses.\n`;
   }
   function downloadSpecs(event) { event.preventDefault(); download(`VOLT-${state.voltage}V-${state.capacity}Ah-specs.txt`, summary()); toast(`${state.voltage}V / ${state.capacity}Ah specs downloaded`); }
   $('#download-hero')?.addEventListener('click', downloadSpecs);

@@ -1,6 +1,6 @@
 # VOLT Batteries
 
-A responsive, five-page website for prismatic lithium batteries, built with **HTML, CSS, and vanilla JavaScript**. The site combines a light blue glass design with an interactive 3D battery, model pricing, a custom battery configurator, and a runtime estimator.
+A responsive, five-page website for prismatic lithium batteries, built with **HTML, CSS, and vanilla JavaScript**. The site combines a light blue glass design with an interactive 3D battery, model comparison, a custom battery configurator, and a runtime estimator.
 
 [View hosted website](https://volt-lithium-studio.gladolive16384.chatgpt.site/) · [Explore the code](https://github.com/HappyDeswal/VOLT_BATTERIES)
 
@@ -11,7 +11,7 @@ A responsive, five-page website for prismatic lithium batteries, built with **HT
 ## Features
 
 - **Interactive 3D battery:** CSS-built geometry rotates slowly on the homepage. Hover pauses automatic rotation, slightly enlarges the battery, and follows cursor movement. Pause, reset, touch drag, and keyboard controls are included.
-- **Model comparison:** switch between 12V 100Ah and 24V 100Ah, with synchronized specifications and prices.
+- **Model comparison:** switch between 12V 100Ah and 24V 100Ah, with synchronized specifications.
 - **Custom battery builder:** enter voltage and Ah, view nominal energy, save a build in the browser, download a summary, and carry the requirements into an enquiry.
 - **Runtime estimator:** 12V, 24V, and 48V presets plus editable custom voltage/Ah, load presets, and usable-energy settings.
 - **Contact page:** general queries and custom battery enquiries with validation, review, email draft, copy, and download options.
@@ -22,7 +22,7 @@ A responsive, five-page website for prismatic lithium batteries, built with **HT
 
 | Page | File | Purpose |
 | --- | --- | --- |
-| Home | `index.html` | 3D showcase, specifications, pricing, images, and general enquiry link |
+| Home | `index.html` | 3D showcase, specifications, images, and general enquiry link |
 | Models | `models.html` | Standard model comparison and interactive product viewer |
 | Custom Build | `custom.html` | Voltage/Ah configuration and enquiry handoff |
 | Runtime | `runtime.html` | Preset and custom battery runtime calculations |
@@ -30,12 +30,12 @@ A responsive, five-page website for prismatic lithium batteries, built with **HT
 
 ## Standard models
 
-| Model | Capacity | Calculated nominal energy | Price |
-| --- | --- | --- | --- |
-| 12V | 100Ah | 1,200Wh | ₹18,000 |
-| 24V | 100Ah | 2,400Wh | ₹28,000 |
+| Model | Capacity | Calculated nominal energy |
+| --- | --- | --- |
+| 12V | 100Ah | 1,200Wh |
+| 24V | 100Ah | 2,400Wh |
 
-Prices are the owner-supplied amounts in Indian rupees. Tax and shipping terms are not specified. The 48V option is a runtime calculator preset; no 48V product price is listed.
+No prices are currently published. Enquire for pricing. The 48V option is a runtime calculator preset.
 
 ## Run locally
 
@@ -98,7 +98,7 @@ There is **no server-side form submission, email delivery service, submission da
 ## Customization
 
 - **Appearance:** edit the colour variables and glass styles in `theme.css`. The site uses a fixed light theme.
-- **Prices:** update `modelPrices` in `app.js` and the initial price text in `index.html` and `models.html`.
+- **Pricing:** no amounts are published; the pricing links lead to the contact page.
 - **Content:** edit the corresponding HTML page.
 - **Images:** replace files in `assets/` and update image paths and alt text as needed.
 - **Saved builds:** custom configurations and the selected standard model use browser `localStorage`; they do not sync across devices.
@@ -113,7 +113,7 @@ Pushing this repository does not itself enable GitHub Pages or change the existi
 
 ## Product and image notes
 
-VOLT is a working brand name. The owner has specified prismatic cells, model voltage/capacity, and the two standard prices. Product geometry and AI-generated images are illustrative. Chemistry, dimensions, charging/discharge limits, certifications, and warranty have not been verified. Final battery design and installation require appropriate review.
+VOLT is a working brand name. The owner has specified prismatic cells, and model voltage/capacity. Product geometry and AI-generated images are illustrative. Chemistry, dimensions, charging/discharge limits, certifications, and warranty have not been verified. Final battery design and installation require appropriate review.
 
 See [image prompts and provenance](docs/IMAGE_PROMPTS.md) and the [product requirements](docs/PRD.md) for more context.
 

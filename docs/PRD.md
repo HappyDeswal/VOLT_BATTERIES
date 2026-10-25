@@ -71,24 +71,21 @@ Both models update every dependent view consistently. Drag, spin, reset, calcula
 - Retain the working name without registered-trademark symbols; no new naming request in this revision.
 
 
-## Revision 7 — standard model pricing
-- User supplied INR 18,000 for 12V 100Ah and INR 28,000 for 24V 100Ah.
-- Show prices on model cards and on the selected model’s Home/Models hero; update immediately when models switch.
-- Include standard model prices in spec downloads. Do not infer custom-build prices, tax or shipping terms.
-
+## Revision 7 — pricing (superseded)
+- No prices are currently published. Enquire for pricing.
 
 ## Revision 8 — runtime 48V and custom batteries
 - Add 48V / 100Ah as a runtime preset alongside 12V and 24V. No 48V price or new standard product is implied.
 - Add a Custom mode with inline voltage and Ah inputs, validation, calculated energy and live runtime. Retain the builder query-string handoff and add a contact link for the current custom values.
 - Runtime defaults remain 100W and 90% usable energy; 48V / 100Ah yields 43.2h, 48V / 200Ah yields 86.4h. Switching to a preset hides custom fields and restores 100Ah.
-- Preserve 12V/24V product price behavior and both glass themes.
+- Preserve 12V/24V model selection.
 
 
 ## Revision 9 — blue glass and general homepage enquiry
 - User requested a blue theme and approved replacing the home closing specs download with a generic Contact link.
 - Use “Enquire about a battery” linking to contact.html with no model, voltage, capacity or query parameters. Selection changes must not modify this link.
 - Apply blue/sky accents, cool light surfaces and navy dark surfaces throughout the five-page glass theme, including the 3D battery labels and calculators.
-- Preserve model prices, runtime options, enquiry form and existing theme preference.
+- Preserve model selection, runtime options and enquiry form.
 
 
 ## Revision 10 — homepage battery motion
@@ -117,3 +114,8 @@ Both models update every dependent view consistently. Drag, spin, reset, calcula
 ## Custom build limits — 24 October 2026
 
 Custom voltage is limited to 12–48V in 0.1V steps; capacity is limited to 100–200Ah in whole Ah. Apply these limits to the builder, custom runtime estimates, enquiry form, saved builds and incoming configuration links.
+
+
+## Pricing update — 25 October 2026
+
+Do not publish or claim prices for any battery. Remove previously listed amounts from model cards, hero panels, downloadable summaries and current documentation. Use “Enquire for pricing” until the owner provides final pricing.
